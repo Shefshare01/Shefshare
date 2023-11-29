@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin page</title>
+    <link rel="stylesheet" href="css/usbbutton.css, css/middle.css">
+
+    <script
+            src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous"></script>
+    <script>
+    </script>
+<style>
+  input, button { font-family: inherit; font-size: inherit; }
+</style>
+
+</head>
+<body>
+    <h1>관리자 페이지</h1>
+    <div><form action="add_admin.php" method="post" >
+        <div class="input-box"><input type="text" name="name" placeholder="관리자 아이디" required>
+        <input type="password" name="pw" placeholder="관리자 비밀번호" required></div>
+        <p><button id="addID">추가</button></p>
+    </form></div>
+    <form action="delete.php" method="POST">
+        <table><input type="text" name="name" placeholder="관리자 아이디" required>
+        <input type="password" name="pw" placeholder="관리자 비밀번호" required></table>
+        <p><button id="deletID">삭제</button></p>
+    </form>
+    <form action="hea.php" method="POST">
+        <p><button id="logout">로그아웃</button></p>
+    </form>
+    <div id="result">
+
+    </div>
+    <script>
+
+        function Data() {
+// AJAX를 이용하여 PHP 스크립트 호출
+            var xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // 성공적으로 데이터를 받아왔을 때 처리
+                    document.getElementById("result").innerHTML = xhr.responseText;
+                }
+            }
+            xhr.open("POST", "select_log.php", true)
+            xhr.send()
+        }
+        function Data2() {
+            var xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                document.getElementById("member").innerHTML = xhr.responseText;
+            }
+        }
+            xhr.open("POST", "select_member.php", true)
+            xhr.send()
+        }
+        function Data3() {
+            var xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById("usb").innerHTML = xhr.responseText;
+                }
+            }
+            xhr.open("POST", "select_usb.php", true)
+            xhr.send()
+        }
+        setInterval(Data, 500);
+        setInterval(Data2, 500);
+        Data3();
+    </script>
+    <div id="member">    </div>
+    USB 허용
+    <div id="usb">    </div>
+
+</body>
+</html>

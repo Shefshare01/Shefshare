@@ -1,0 +1,11 @@
+input, button { font-family: inherit; font-size: inherit; }
+.input-box {
+    float: revert;
+    display: block;
+    width: max-content;
+    text-align: center;
+    margin: 20px;
+    padding-top: 1px; /*of the width to maintain 16:10 ratio */
+    border-radius: 10px; /* Adjust the border-radius as needed for rounded corners */
+    border: 3px solid #999; /* Border style */
+}
